@@ -1,1 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koenigsegg - Шведские гиперкары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        :root {
+            --primary: #0051ba;
+            --secondary: #f0f0f0;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --accent: #ff2a00;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 81, 186, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 42, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        header {
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), 
+                        url('https://i.pinimg.com/736x/b0/94/e7/b094e7e4c59d2079a83275ba8e46c910.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            width: 100%;
+            z-index: 2;
+            position: relative;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 81, 186, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 70px;
+            height: 70px;
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.7;
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            text-shadow: 0 0 20px rgba(0, 81, 186, 0.5);
+            letter-spacing: 4px;
+            animation: fadeInDown 1.2s ease-out, glow 3s infinite alternate;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 81, 186, 0.5);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(0, 81, 186, 0.8), 0 0 40px rgba(0, 81, 186, 0.6);
+            }
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1.2s ease-out 0.5s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+            animation: fadeIn 1.5s ease-out 1s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 81, 186, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary);
+            color: var(--light);
+            box-shadow: 0 0 20px rgba(0, 81, 186, 0.7);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        nav {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav li {
+            margin: 0 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 4px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary);
+            transition: all 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--light);
+            font-size: 3rem;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 2px;
+        }
+
+        .history-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .history-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+        }
+
+        .history-text:hover {
+            transform: translateY(-10px);
+        }
+
+        .history-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+
+        .history-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.7s;
+            filter: brightness(0.9);
+        }
+
+        .history-image img:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            filter: brightness(1);
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .car-card {
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .car-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .car-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .car-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .car-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.2);
+        }
+
+        .car-info {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .car-info h3 {
+            margin-bottom: 15px;
+            color: var(--light);
+            font-size: 1.6rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .car-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .car-info p {
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+        }
+
+        .spec {
+            text-align: center;
+        }
+
+        .spec-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .spec-name {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .records-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .records-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(0, 81, 186, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255, 42, 0, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .record-card {
+            background: rgba(40, 40, 40, 0.7);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.5s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .record-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .record-card:hover {
+            transform: translateY(-15px);
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .record-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .record-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 81, 186, 0.3);
+        }
+
+        .record-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .technologies-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .technologies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .technology-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .technology-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .technology-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .technology-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .technology-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s;
+        }
+
+        .technology-card:hover .technology-image img {
+            transform: scale(1.1);
+        }
+
+        .technology-info {
+            padding: 25px;
+        }
+
+        .technology-info h3 {
+            margin-bottom: 15px;
+            color: var(--light);
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .technology-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .technology-info p {
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background: rgba(40, 40, 40, 0.7);
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--dark);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 25px;
+            z-index: 1;
+            transition: all 0.5s;
+        }
+
+        .timeline-item:hover::after {
+            background-color: var(--primary);
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0, 81, 186, 0.7);
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -15px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -15px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            padding: 4rem 0 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin: 0 10px;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            width: 100%;
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .floating-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: var(--light);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            opacity: 0;
+        }
+
+        .floating-badge.visible {
+            opacity: 1;
+        }
+
+        .floating-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 81, 186, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 81, 186, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 81, 186, 0);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 18px;
+            }
+
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container header-content">
+            <div class="logo">KOENIG<span>SEGG</span></div>
+            <p>Шведские гиперкары, бросающие вызов пределам возможного</p>
+            <a href="#history" class="cta-button">Исследовать историю</a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#history">История</a></li>
+                <li><a href="#cars">Автомобили</a></li>
+                <li><a href="#records">Рекорды</a></li>
+                <li><a href="#technologies">Технологии</a></li>
+                <li><a href="#timeline">Хронология</a></li>
+                <li><a href="#founder">Основатель</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="history">
+        <div class="container">
+            <h2>История Koenigsegg</h2>
+            <div class="history-content">
+                <div class="history-text">
+                    <p>Koenigsegg — шведская автомобильная компания, основанная Кристианом фон Кёнигсеггом в 1994 году. Компания специализируется на производстве ограниченных серий гиперкаров с революционными технологиями.</p>
+                    <p>Первый прототип, Koenigsegg CC, был представлен в 1996 году. С тех пор компания постоянно устанавливает новые стандарты в автомобилестроении, создавая одни из самых быстрых и технологичных автомобилей в мире.</p>
+                    <p>Koenigsegg известна своими инновационными решениями, такими как система смены передач без сцепления, двигатели с системой Freevalve и уникальные карбоновые монококи.</p>
+                </div>
+                <div class="history-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Koenigsegg_logo.svg/1200px-Koenigsegg_logo.svg.png" alt="Koenigsegg Factory">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cars" style="background: rgba(10, 10, 10, 0.7);">
+        <div class="container">
+            <h2>Легендарные автомобили</h2>
+            <div class="cars-grid">
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://i.pinimg.com/736x/1d/7e/07/1d7e074e7e8554c2b480bc7d14d0b1f6.jpg" alt="Koenigsegg CC8S">
+                    </div>
+                    <div class="car-info">
+                        <h3>Koenigsegg CC8S (2002)</h3>
+                        <p>Первый серийный автомобиль компании, установивший рекорд как самый мощный серийный двигатель в мире.</p>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <div class="spec-value">655 л.с.</div>
+                                <div class="spec-name">Мощность</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">390 км/ч</div>
+                                <div class="spec-name">Скорость</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">6</div>
+                                <div class="spec-name">Экземпляров</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Koenigsegg_agera.jpg/1200px-Koenigsegg_agera.jpg" alt="Koenigsegg Agera">
+                    </div>
+                    <div class="car-info">
+                        <h3>Koenigsegg Agera (2010)</h3>
+                        <p>Гиперкар, установивший несколько мировых рекордов скорости и ускорения.</p>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <div class="spec-value">960 л.с.</div>
+                                <div class="spec-name">Мощность</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">420 км/ч</div>
+                                <div class="spec-name">Скорость</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">2.9с</div>
+                                <div class="spec-name">0-100 км/ч</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/2015_Koenigsegg_One-1_%2819706358889%29.jpg" alt="Koenigsegg One:1">
+                    </div>
+                    <div class="car-info">
+                        <h3>Koenigsegg One:1 (2014)</h3>
+                        <p>Первый в мире гиперкар с соотношением мощности к весу 1:1 (1 л.с. на 1 кг).</p>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <div class="spec-value">1360 л.с.</div>
+                                <div class="spec-name">Мощность</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">440 км/ч</div>
+                                <div class="spec-name">Скорость</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">7</div>
+                                <div class="spec-name">Экземпляров</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://luxurypulse.com/img/pictures/66df206d11cc1copie.jpeg" alt="Koenigsegg Regera">
+                    </div>
+                    <div class="car-info">
+                        <h3>Koenigsegg Regera (2015)</h3>
+                        <p>Гиперкар-гибрид с прямой передачей и системой KDD, обеспечивающей невероятное ускорение.</p>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <div class="spec-value">1500 л.с.</div>
+                                <div class="spec-name">Мощность</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">410 км/ч</div>
+                                <div class="spec-name">Скорость</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">2.8с</div>
+                                <div class="spec-name">0-100 км/ч</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Koenigsegg_Jesko_Genf_2019_1Y7A5887.jpg/960px-Koenigsegg_Jesko_Genf_2019_1Y7A5887.jpg?20190321145208" alt="Koenigsegg Jesko">
+                    </div>
+                    <div class="car-info">
+                        <h3>Koenigsegg Jesko (2019)</h3>
+                        <p>Трековый гиперкар с революционной 9-ступенчатой трансмиссией и двигателем на биотопливе.</p>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <div class="spec-value">1600 л.с.</div>
+                                <div class="spec-name">Мощность</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">480+ км/ч</div>
+                                <div class="spec-name">Скорость</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">125</div>
+                                <div class="spec-name">Экземпляров</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/2020_Koenigsegg_Gemera_2.0.jpg/1200px-2020_Koenigsegg_Gemera_2.0.jpg" alt="Koenigsegg Gemera">
+                    </div>
+                    <div class="car-info">
+                        <h3>Koenigsegg Gemera (2020)</h3>
+                        <p>Первый в мире четырехместный гиперкар с гибридной силовой установкой и двигателем без распредвала.</p>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <div class="spec-value">1700 л.с.</div>
+                                <div class="spec-name">Мощность</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">400 км/ч</div>
+                                <div class="spec-name">Скорость</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">1.9с</div>
+                                <div class="spec-name">0-100 км/ч</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="records" class="records-section">
+        <div class="container">
+            <h2>Мировые рекорды Koenigsegg</h2>
+            <div class="records-grid">
+                <div class="record-card">
+                    <div class="record-icon">🚀</div>
+                    <div class="record-value">457.94 км/ч</div>
+                    <div class="record-description">Максимальная скорость Agera RS на закрытой дороге в Неваде</div>
+                </div>
+                <div class="record-card">
+                    <div class="record-icon">⏱️</div>
+                    <div class="record-value">31.49 сек</div>
+                    <div class="record-description">0-400-0 км/ч у Regera - мировой рекорд</div>
+                </div>
+                <div class="record-card">
+                    <div class="record-icon">💨</div>
+                    <div class="record-value">1700 л.с.</div>
+                    <div class="record-description">Мощность гибридной установки Gemera</div>
+                </div>
+                <div class="record-card">
+                    <div class="record-icon">⚖️</div>
+                    <div class="record-value">1:1</div>
+                    <div class="record-description">Соотношение мощности к весу у One:1</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies" class="technologies-section">
+        <div class="container">
+            <h2>Инновационные технологии</h2>
+            <div class="technologies-grid">
+                <div class="technology-card">
+                    <div class="technology-image">
+                        <img src="https://www.autolexicon.net/obr_clanky/cs_freevalve_007.jpg" alt="Freevalve Technology">
+                    </div>
+                    <div class="technology-info">
+                        <h3>Freevalve</h3>
+                        <p>Технология бескулачкового привода клапанов, позволяющая независимо управлять каждым клапаном для оптимизации мощности и эффективности.</p>
+                    </div>
+                </div>
+                <div class="technology-card">
+                    <div class="technology-image">
+                        <img src="https://i.ytimg.com/vi/xsruhlGIRWY/maxresdefault.jpg" alt="KDD Direct Drive">
+                    </div>
+                    <div class="technology-info">
+                        <h3>KDD (Koenigsegg Direct Drive)</h3>
+                        <p>Система прямой передачи в гибридных автомобилях, исключающая традиционную коробку передач для максимальной эффективности.</p>
+                    </div>
+                </div>
+                <div class="technology-card">
+                    <div class="technology-image">
+                        <img src="https://i.pinimg.com/originals/81/a7/b0/81a7b0921cac9bef53c84d79cc112fbf.jpg" alt="Carbon Fiber Monocoque">
+                    </div>
+                    <div class="technology-info">
+                        <h3>Карбоновый монокок</h3>
+                        <p>Самый прочный и легкий монокок в автомобильной промышленности, обеспечивающий исключительную безопасность и жесткость.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline">
+        <div class="container">
+            <h2>Хронология Koenigsegg</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1994</h3>
+                        <p>Кристиан фон Кёнигсегг основывает компанию Koenigsegg Automotive AB в Швеции.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1996</h3>
+                        <p>Представлен первый прототип Koenigsegg CC на Cannes Film Festival.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2002</h3>
+                        <p>Начало производства первой серийной модели CC8S.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2006</h3>
+                        <p>Koenigsegg CCR устанавливает мировой рекорд скорости для серийных автомобилей.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2010</h3>
+                        <p>Представлен гиперкар Agera с революционными технологиями.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2014</h3>
+                        <p>Анонсирован Koenigsegg One:1 - первый гиперкар с соотношением мощности к весу 1:1.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2015</h3>
+                        <p>Представлен гибридный гиперкар Regera с системой KDD.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2017</h3>
+                        <p>Agera RS устанавливает несколько мировых рекордов скорости.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2019</h3>
+                        <p>Представлен трековый гиперкар Jesko с 9-ступенчатой трансмиссией.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2020</h3>
+                        <p>Анонсирован четырехместный гиперкар Gemera с технологией Freevalve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="founder" style="background: rgba(10, 10, 10, 0.7);">
+        <div class="container">
+            <h2>Основатель - Кристиан фон Кёнигсегг</h2>
+            <div class="history-content">
+                <div class="history-image">
+                    <img src="https://s.yimg.com/ny/api/res/1.2/DAnppv2ZBiBUuVQnLvWtPw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU-/https://media.zenfs.com/en/road_track_223/7114473ee7757ee982373c8f03c20038" alt="Кристиан фон Кёнигсегг">
+                </div>
+                <div class="history-text">
+                    <p>Кристиан фон Кёнигсегг (род. 1972) — шведский предприниматель и инженер-автоконструктор, основатель компании Koenigsegg Automotive AB.</p>
+                    <p>С детства увлекался техникой и автомобилями. В 22 года основал компанию с целью создания идеального суперкара. Его философия — постоянные инновации и стремление к совершенству.</p>
+                    <p>Под его руководством Koenigsegg разработала множество революционных технологий, включая систему Freevalve, карбоновые монококи и гибридные силовые установки.</p>
+                    <p>Его девиз: "Невозможное — это просто вызов, который мы еще не приняли".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">KOENIG<span>SEGG</span></div>
+                <div class="footer-links">
+                    <a href="#">Главная</a>
+                    <a href="#history">История</a>
+                    <a href="#cars">Автомобили</a>
+                    <a href="#records">Рекорды</a>
+                    <a href="#technologies">Технологии</a>
+                    <a href="#timeline">Хронология</a>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 История марки Koenigsegg. Все права защищены.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-badge" onclick="scrollToTop()">↑</div>
+
+    <script>
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('nav a, .cta-button').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        // Применяем анимацию к секциям
+        document.querySelectorAll('section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Применяем анимацию к карточкам
+        document.querySelectorAll('.car-card, .record-card, .technology-card, .timeline-item').forEach(item => {
+            cardObserver.observe(item);
+        });
+
+        // Добавляем текущий год в копирайт
+        document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} История марки Koenigsegg. Все права защищены.`;
+
+        // Функция для прокрутки наверх
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Показываем/скрываем кнопку "Наверх"
+        window.addEventListener('scroll', function() {
+            const floatingBadge = document.querySelector('.floating-badge');
+            if (window.pageYOffset > 500) {
+                floatingBadge.classList.add('visible');
+            } else {
+                floatingBadge.classList.remove('visible');
+            }
+        });
+
+        // Добавляем эффект параллакса для фона
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-element');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
